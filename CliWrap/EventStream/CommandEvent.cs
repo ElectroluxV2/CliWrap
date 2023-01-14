@@ -63,6 +63,46 @@ public class StandardOutputCommandEvent : CommandEvent
 }
 
 /// <summary>
+/// Event triggered when the underlying process writes a bytes.
+/// </summary>
+public class StandardBinaryOutputCommandEvent : CommandEvent
+{
+    /// <summary>
+    /// Bytes written to the standard output stream.
+    /// </summary>
+    public byte[] Bytes { get; }
+
+    /// <summary>
+    /// Initializes an instance of <see cref="StandardBinaryOutputCommandEvent" />.
+    /// </summary>
+    public StandardBinaryOutputCommandEvent(byte[] bytes) => Bytes = bytes;
+
+    /// <inheritdoc />
+    [ExcludeFromCodeCoverage]
+    public override string ToString() => Bytes.ToString() ?? "Empty";
+}
+
+/// <summary>
+/// Event triggered when the underlying process writes a bytes.
+/// </summary>
+public class StandardBinaryErrorCommandEvent : CommandEvent
+{
+    /// <summary>
+    /// Bytes written to the standard error stream.
+    /// </summary>
+    public byte[] Bytes { get; }
+
+    /// <summary>
+    /// Initializes an instance of <see cref="StandardBinaryErrorCommandEvent" />.
+    /// </summary>
+    public StandardBinaryErrorCommandEvent(byte[] bytes) => Bytes = bytes;
+
+    /// <inheritdoc />
+    [ExcludeFromCodeCoverage]
+    public override string ToString() => Bytes.ToString() ?? "Bytes.ToStrong()";
+}
+
+/// <summary>
 /// Event triggered when the underlying process writes a line of text to the standard error stream.
 /// </summary>
 public class StandardErrorCommandEvent : CommandEvent
